@@ -1,0 +1,715 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red98\green98\blue98;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c45882\c45882\c45882;\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18240\viewh14160\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+See the Assessment Guide for information on how to interpret this report.\
+\
+ASSESSMENT SUMMARY\
+\
+Compilation:  PASSED\
+API:          PASSED\
+\
+Findbugs:     FAILED (1 warning)\
+PMD:          FAILED (11 warnings)\
+Checkstyle:   FAILED (0 errors, 18 warnings)\
+\
+Correctness:  16/27 tests passed\
+Memory:       8/8 tests passed\
+Timing:       14/42 tests passed\
+\
+Aggregate score: 62.22%\
+[Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]\
+\
+ASSESSMENT DETAILS\
+\
+The following files were submitted:\
+----------------------------------\
+8.4K Jun 22 00:57 KdTree.java\
+3.5K Jun 22 00:57 PointSET.java\
+\
+\
+********************************************************************************\
+*  COMPILING                                                                    \
+********************************************************************************\
+\
+\
+% javac PointSET.java\
+*-----------------------------------------------------------\
+\
+% javac KdTree.java\
+*-----------------------------------------------------------\
+\
+\
+================================================================\
+\
+\
+Checking the APIs of your programs.\
+*-----------------------------------------------------------\
+PointSET:\
+\
+KdTree:\
+\
+================================================================\
+\
+\
+********************************************************************************\
+*  CHECKING STYLE AND COMMON BUG PATTERNS                                       \
+********************************************************************************\
+\
+\
+% findbugs *.class\
+*-----------------------------------------------------------\
+L D FE_FLOATING_POINT_EQUALITY FE: Tests for exact floating-point equality. Because floating-point calculations may involve rounding, the calculated values may be imprecise.  At KdTree.java:[line 87]\
+Warnings generated: 1\
+\
+================================================================\
+\
+\
+% checkstyle *.java\
+*-----------------------------------------------------------\
+[WARN] PointSET.java:50:17: '(' is followed by whitespace. [ParenPad]\
+[WARN] PointSET.java:73:3: The comment is empty. [IllegalTokenText]\
+[WARN] PointSET.java:89:3: The comment is empty. [IllegalTokenText]\
+[WARN] PointSET.java:92:3: The comment is empty. [IllegalTokenText]\
+[WARN] KdTree.java:8:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]\
+[WARN] KdTree.java:8:34: The constant 'x' must be ALL_UPPERCASE, with words separated by underscores. [ConstantName]\
+[WARN] KdTree.java:9:5: Declare static variables before instance variables, constructors, and methods. [DeclarationOrder]\
+[WARN] KdTree.java:9:34: The constant 'y' must be ALL_UPPERCASE, with words separated by underscores. [ConstantName]\
+[WARN] KdTree.java:110:45: '(' is followed by whitespace. [ParenPad]\
+[WARN] KdTree.java:110:112: ')' is preceded with whitespace. [ParenPad]\
+[WARN] KdTree.java:125:45: '(' is followed by whitespace. [ParenPad]\
+[WARN] KdTree.java:125:116: ')' is preceded with whitespace. [ParenPad]\
+[WARN] KdTree.java:149:5: Declare instance variables after static variables but before constructors and methods. [DeclarationOrder]\
+[WARN] KdTree.java:150:5: Declare instance variables after static variables but before constructors and methods. [DeclarationOrder]\
+[WARN] KdTree.java:201:3: The comment is empty. [IllegalTokenText]\
+[WARN] KdTree.java:217:3: The comment is empty. [IllegalTokenText]\
+Checkstyle ends with 0 errors and 16 warnings.\
+\
+% custom checkstyle checks for PointSET.java\
+*-----------------------------------------------------------\
+[WARN] PointSET.java:26:30: The numeric literal '0.02' appears to be unnecessary. [NumericLiteral]\
+Checkstyle ends with 0 errors and 1 warnings.\
+\
+% custom checkstyle checks for KdTree.java\
+*-----------------------------------------------------------\
+[WARN] KdTree.java:10:13: You should not need to use the 'SET' data type in this program. [IllegalType]\
+Checkstyle ends with 0 errors and 1 warnings.\
+\
+\
+================================================================\
+\
+\
+% pmd *.java\
+*-----------------------------------------------------------\
+KdTree.java:9: Avoid unused private fields such as 'y'. [UnusedPrivateField]\
+KdTree.java:34: Avoid throwing null pointer exceptions. [AvoidThrowingNullPointerException]\
+KdTree.java:76: Avoid throwing null pointer exceptions. [AvoidThrowingNullPointerException]\
+KdTree.java:133: Avoid throwing null pointer exceptions. [AvoidThrowingNullPointerException]\
+KdTree.java:149: Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes. [FieldDeclarationsShouldBeAtStartOfClass]\
+KdTree.java:150: Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes. [FieldDeclarationsShouldBeAtStartOfClass]\
+KdTree.java:152: Avoid throwing null pointer exceptions. [AvoidThrowingNullPointerException]\
+PointSET.java:18: Avoid throwing null pointer exceptions. [AvoidThrowingNullPointerException]\
+PointSET.java:22: Avoid throwing null pointer exceptions. [AvoidThrowingNullPointerException]\
+PointSET.java:34: Avoid throwing null pointer exceptions. [AvoidThrowingNullPointerException]\
+PointSET.java:45: Avoid throwing null pointer exceptions. [AvoidThrowingNullPointerException]\
+PMD ends with 11 warnings.\
+\
+\
+================================================================\
+\
+\
+********************************************************************************\
+*  TESTING CORRECTNESS\
+********************************************************************************\
+\
+Testing correctness of PointSET\
+*-----------------------------------------------------------\
+Running 8 total tests.\
+\
+A point in an m-by-m grid means that it is of the form (i/m, j/m),\
+where i and j are integers between 0 and m\
+\
+Test 1: Test size() by inserting n random points\
+        (size may be less than n because of duplicates)\
+  * 100000 random points in a 100000-by-100000 grid\
+  * 100000 random points in a 10000-by-10000 grid\
+  * 100000 random points in a 1000-by-1000 grid\
+  * 100000 random points in a 100-by-100 grid\
+  * 100000 random points in a 10-by-10 grid\
+==> passed\
+\
+Test 2: Test isEmpty() by checking for n = 0, 1, and 2 points\
+  * 0 points\
+  * 1 point\
+  * 2 points\
+==> passed\
+\
+Test 3: Insert n random points and check contains() for random query points\
+  * 100000 random points in a 100000-by-100000 grid\
+  * 100000 random points in a 10000-by-10000 grid\
+  * 100000 random points in a 1000-by-1000 grid\
+  * 100000 random points in a 100-by-100 grid\
+  * 100000 random points in a 10-by-10 grid\
+==> passed\
+\
+Test 4: Insert n random points and check nearest() for random query points\
+  * 1000 random points in a 100000-by-100000 grid\
+  * 1000 random points in a 10000-by-10000 grid\
+  * 1000 random points in a 1000-by-1000 grid\
+  * 1000 random points in a 100-by-100 grid\
+  * 1000 random points in a 10-by-10 grid\
+==> passed\
+\
+Test 5: Insert n random points and check range() for random query rectangles\
+  * 1000 random rectangles and points in a 100000-by-100000 grid\
+  * 1000 random rectangles and points in a 10000-by-10000 grid\
+  * 1000 random rectangles and points in a 1000-by-1000 grid\
+  * 1000 random rectangles and points in a 100-by-100 grid\
+  * 1000 random rectangles and points in a 10-by-10 grid\
+==> passed\
+\
+Test 6: Intermixed sequence of calls to isEmpty(), size(), insert(),\
+        contains(), range(), and nearest() with probabilities\
+        p1, p2, p3, p4, p5, and p6, respectively\
+  * 10000 calls with random points in a 10000-by-10000 grid\
+    and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2\
+  * 10000 calls with random points in a 1000-by-1000 grid\
+    and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2\
+  * 10000 calls with random points in a 100-by-100 grid\
+    and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2\
+  * 10000 calls with random points in a 10-by-10 grid\
+    and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2\
+  * 10000 calls with random points in a 1-by-1 grid\
+    and probabilities 0.05, 0.05, 0.3, 0.2, 0.2, 0.2\
+==> passed\
+\
+Test 7: Intermixed sequence of calls to isEmpty(), size(), insert(),\
+        contains(), range(), and nearest() with probabilities\
+        p1, p2, p3=0, p4, p5, and p6, respectively\
+        (data structure with 0 points)\
+  * 1000 calls with random points in a 1000-by-1000 grid\
+    and probabilities 0.5, 0.5, 0.0, 0.0, 0.0, 0.0\
+  * 1000 calls with random points in a 1000-by-1000 grid\
+    and probabilities 0.2, 0.2, 0.0, 0.6, 0.0, 0.0\
+  * 1000 calls with random points in a 1000-by-1000 grid\
+    and probabilities 0.2, 0.2, 0.0, 0.0, 0.6, 0.0\
+  * 1000 calls with random points in a 1000-by-1000 grid\
+    and probabilities 0.2, 0.2, 0.0, 0.0, 0.0, 0.6\
+  * 1000 calls with random points in a 1000-by-1000 grid\
+    and probabilities 0.2, 0.2, 0.0, 0.2, 0.2, 0.2\
+==> passed\
+\
+Test 8: Test whether two PointSET objects can be created at the same time\
+==> passed\
+\
+\
+Total: 8/8 tests passed!\
+\
+\
+================================================================\
+Testing correctness of KdTree\
+*-----------------------------------------------------------\
+In the tests below, we consider three classes of points and rectangles.\
+\
+  * Non-degenerate points: no two points (or rectangles) share either an\
+                           x-coordinate or a y-coordinate\
+\
+  * Distinct points:       no two points (or rectangles) share both an\
+                           x-coordinate and a y-coordinate\
+\
+  * General points:        no restrictions on the x-coordinates or y-coordinates\
+                           of the points (or rectangles)\
+\
+A point in an GRID-by-GRID grid means that it is of the form (i/GRID, j/GRID),\
+where i and j are integers between 0 and GRID\
+\
+Running 19 total tests.\
+\
+Test 1a: Insert n non-degenerate points and check size() after each insertion\
+  * 50000 random non-degenerate points in a 100000-by-100000 grid\
+  * 5000 random non-degenerate points in a 10000-by-10000 grid\
+  * 500 random non-degenerate points in a 1000-by-1000 grid\
+  * 50 random non-degenerate points in a 100-by-100 grid\
+  * 10 random non-degenerate points in a 10-by-10 grid\
+  * 1 random non-degenerate points in a 1-by-1 grid\
+==> passed\
+\
+Test 1b: Insert n distinct points and check size() after each insertion\
+  * 100000 random distinct points in a 100000-by-100000 grid\
+  * 100000 random distinct points in a 10000-by-10000 grid\
+  * 100000 random distinct points in a 1000-by-1000 grid\
+  * 10000 random distinct points in a 100-by-100 grid\
+  * 100 random distinct points in a 10-by-10 grid\
+  * 1 random distinct points in a 1-by-1 grid\
+==> passed\
+\
+Test 1c: Insert n general points and check size() after each insertion\
+  * 100000 random general points in a 100000-by-100000 grid\
+  * 100000 random general points in a 10000-by-10000 grid\
+    - failed on trial 49175 of 100000\
+    - student   size() = 49168\
+    - reference size() = 49167\
+  * 100000 random general points in a 1000-by-1000 grid\
+    - failed on trial 3522 of 100000\
+    - student   size() = 3519\
+    - reference size() = 3518\
+  * 100000 random general points in a 100-by-100 grid\
+    - failed on trial 191 of 100000\
+    - student   size() = 190\
+    - reference size() = 189\
+  * 100000 random general points in a 10-by-10 grid\
+    - failed on trial 33 of 100000\
+    - student   size() = 32\
+    - reference size() = 31\
+  * 10 random general points in a 1-by-1 grid\
+    - failed on trial 6 of 10\
+    - student   size() = 4\
+    - reference size() = 3\
+==> FAILED\
+\
+Test 2: Test size() and isEmpty() for n = 0, 1, and 2 points\
+  * 0 points\
+  * 1 point\
+  * 2 points\
+==> passed\
+\
+Test 3a: Insert n non-degenerate points and call contains() with random query points\
+  * 50000 random non-degenerate points in a 100000-by-100000 grid\
+  * 5000 random non-degenerate points in a 10000-by-10000 grid\
+  * 500 random non-degenerate points in a 1000-by-1000 grid\
+  * 50 random non-degenerate points in a 100-by-100 grid\
+  * 5 random non-degenerate points in a 10-by-10 grid\
+  * 1 random non-degenerate points in a 1-by-1 grid\
+==> passed\
+\
+Test 3b: Insert n distinct points and call contains() with random query points\
+  * 100000 random distinct points in a 100000-by-100000 grid\
+  * 100000 random distinct points in a 10000-by-10000 grid\
+    - failed on trial 5977 of 100000\
+    - student   contains() = false\
+    - reference contains() = true\
+  * 100000 random distinct points in a 1000-by-1000 grid\
+    - failed on trial 6 of 100000\
+    - student   contains() = false\
+    - reference contains() = true\
+  * 10000 random distinct points in a 100-by-100 grid\
+    - failed on trial 1 of 10000\
+    - student   contains() = false\
+    - reference contains() = true\
+  * 100 random distinct points in a 10-by-10 grid\
+    - failed on trial 2 of 100\
+    - student   contains() = false\
+    - reference contains() = true\
+  * 1 random distinct points in a 1-by-1 grid\
+==> FAILED\
+\
+Test 3c: Insert n general points and call contains() with random query points\
+  * 10000 random general points in a 1000-by-1000 grid\
+    - failed on trial 422 of 10000\
+    - student   contains() = false\
+    - reference contains() = true\
+  * 10000 random general points in a 100-by-100 grid\
+    - failed on trial 1 of 10000\
+    - student   contains() = false\
+    - reference contains() = true\
+  * 10000 random general points in a 10-by-10 grid\
+    - failed on trial 1 of 10000\
+    - student   contains() = false\
+    - reference contains() = true\
+  * 10000 random general points in a 1-by-1 grid\
+    - failed on trial 1 of 10000\
+    - student   contains() = false\
+    - reference contains() = true\
+==> FAILED\
+\
+Test 4: Test whether two KdTree objects can be created at the same time\
+==> passed\
+\
+Test 5a: Insert n non-degenerate points and call range() for n random query rectangles\
+  * 5000 random non-degenerate points and rectangles in a 100000-by-100000 grid\
+    - number of entries in student   solution: 372\
+    - number of entries in reference solution: 26\
+    - 346 extra entries in student solution, including: '(0.44377, 0.95335)'\
+\
+    - failed on trial 2 of 5000\
+    - rectangle = [0.6085, 0.69873] x [0.57102, 0.61359]\
+  * 5000 random non-degenerate points and rectangles in a 10000-by-10000 grid\
+    - number of entries in student   solution: 615\
+    - number of entries in reference solution: 396\
+    - 219 extra entries in student solution, including: '(0.4096, 0.9429)'\
+\
+    - failed on trial 2 of 5000\
+    - rectangle = [0.3471, 0.7398] x [0.554, 0.7533]\
+  * 500 random non-degenerate points and rectangles in a 1000-by-1000 grid\
+    - number of entries in student   solution: 178\
+    - number of entries in reference solution: 116\
+    - 62 extra entries in student solution, including: '(0.284, 0.357)'\
+\
+    - failed on trial 2 of 500\
+    - rectangle = [0.098, 0.594] x [0.366, 0.841]\
+  * 50 random non-degenerate points and rectangles in a 100-by-100 grid\
+    - number of entries in student   solution: 6\
+    - number of entries in reference solution: 2\
+    - 4 extra entries in student solution, including: '(0.54, 0.73)'\
+\
+    - failed on trial 2 of 50\
+    - rectangle = [0.06, 0.31] x [0.31, 0.43]\
+  * 5 random non-degenerate points and rectangles in a 10-by-10 grid\
+    - number of entries in student   solution: 1\
+    - number of entries in reference solution: 0\
+    - 1 extra entry in student solution: '(0.5, 0.5)'\
+\
+    - failed on trial 5 of 5\
+    - rectangle = [0.1, 0.4] x [0.7, 0.7]\
+==> FAILED\
+\
+Test 5b: Insert n distinct points and call range() for n random query rectangles\
+  * 5000 random distinct points and rectangles in a 100000-by-100000 grid\
+    - number of entries in student   solution: 255\
+    - number of entries in reference solution: 6\
+    - 249 extra entries in student solution, including: '(0.86395, 0.50513)'\
+\
+    - failed on trial 2 of 5000\
+    - rectangle = [0.00207, 0.14934] x [0.86963, 0.87331]\
+  * 5000 random distinct points and rectangles in a 10000-by-10000 grid\
+    - number of entries in student   solution: 970\
+    - number of entries in reference solution: 371\
+    - 599 extra entries in student solution, including: '(0.2599, 0.3367)'\
+\
+    - failed on trial 2 of 5000\
+    - rectangle = [0.2706, 0.5985] x [0.5692, 0.7942]\
+  * 1000 random distinct points and rectangles in a 1000-by-1000 grid\
+    - number of entries in student   solution: 681\
+    - number of entries in reference solution: 3\
+    - 678 extra entries in student solution, including: '(0.821, 0.945)'\
+\
+    - failed on trial 2 of 1000\
+    - rectangle = [0.152, 0.999] x [0.04, 0.045]\
+  * 1000 random distinct points and rectangles in a 100-by-100 grid\
+    - number of entries in student   solution: 207\
+    - number of entries in reference solution: 97\
+    - 110 extra entries in student solution, including: '(0.72, 0.6)'\
+\
+    - failed on trial 2 of 1000\
+    - rectangle = [0.09, 0.41] x [0.4, 0.67]\
+  * 5 random distinct points and rectangles in a 10-by-10 grid\
+    - number of entries in student   solution: 4\
+    - number of entries in reference solution: 2\
+    - 2 extra entries in student solution, including: '(0.5, 0.9)'\
+\
+    - failed on trial 4 of 5\
+    - rectangle = [0.2, 1.0] x [0.2, 0.6]\
+==> FAILED\
+\
+Test 5c: Insert n general points and call range() for n random query rectangles\
+  * 5000 random general points and rectangles in a 10000-by-10000 grid\
+    - number of entries in student   solution: 940\
+    - number of entries in reference solution: 698\
+    - 242 extra entries in student solution, including: '(0.8712, 0.3567)'\
+\
+    - failed on trial 2 of 5000\
+    - rectangle = [0.4313, 0.7893] x [0.1691, 0.5464]\
+  * 5000 random general points and rectangles in a 1000-by-1000 grid\
+    - number of entries in student   solution: 670\
+    - number of entries in reference solution: 115\
+    - 555 extra entries in student solution, including: '(0.54, 0.835)'\
+\
+    - failed on trial 2 of 5000\
+    - rectangle = [0.769, 0.819] x [0.062, 0.546]\
+  * 5000 random general points and rectangles in a 100-by-100 grid\
+    - number of entries in student   solution: 86\
+    - number of entries in reference solution: 67\
+    - 19 extra entries in student solution, including: '(0.41, 0.82)'\
+\
+    - failed on trial 2 of 5000\
+    - rectangle = [0.56, 0.67] x [0.33, 0.46]\
+  * 5000 random general points and rectangles in a 10-by-10 grid\
+    - number of entries in student   solution: 20\
+    - number of entries in reference solution: 8\
+    - 12 extra entries in student solution, including: '(0.4, 0.3)'\
+\
+    - failed on trial 2 of 5000\
+    - rectangle = [0.1, 0.8] x [0.5, 0.5]\
+  * 5000 random general points and rectangles in a 1-by-1 grid\
+    - number of entries in student   solution: 3\
+    - number of entries in reference solution: 1\
+    - 2 extra entries in student solution, including: '(0.0, 1.0)'\
+\
+    - failed on trial 4 of 5000\
+    - rectangle = [1.0, 1.0] x [0.0, 0.0]\
+==> FAILED\
+\
+Test 5d: Insert n points and call range() for tiny rectangles enclosing each point.\
+  * 4000 tiny rectangles and 4000 points in a 100000-by-100000 grid\
+    - failed on trial 2 of 4000\
+    - rectangle query        = [0.9917199999, 0.9917200001] x [6.399999E-4, 6.400001000000001E-4]\
+    - student   range() size = 2\
+    - reference range() size = 1\
+  * 4000 tiny rectangles and 4000 points in a 10000-by-10000 grid\
+    - failed on trial 2 of 4000\
+    - rectangle query        = [0.3496999999, 0.3497000001] x [8.999998999999999E-4, 9.000001E-4]\
+    - student   range() size = 2\
+    - reference range() size = 1\
+  * 4000 tiny rectangles and 4000 points in a 1000-by-1000 grid\
+    - failed on trial 2 of 3989\
+    - rectangle query        = [0.7719999999, 0.7720000001] x [0.0, 1.0E-10]\
+    - student   range() size = 2\
+    - reference range() size = 1\
+  * 4000 tiny rectangles and 4000 points in a 100-by-100 grid\
+    - failed on trial 2 of 3306\
+    - rectangle query        = [0.029999999899999998, 0.0300000001] x [0.0, 1.0E-10]\
+    - student   range() size = 2\
+    - reference range() size = 1\
+  * 4000 tiny rectangles and 4000 points in a 10-by-10 grid\
+    - failed on trial 2 of 121\
+    - rectangle query        = [0.09999999990000001, 0.1000000001] x [0.0, 1.0E-10]\
+    - student   range() size = 2\
+    - reference range() size = 1\
+==> FAILED\
+\
+Test 6a: Insert n non-degenerate points and call nearest() with random query points\
+  * 50000 random non-degenerate points in a 100000-by-100000 grid\
+  * 5000 random non-degenerate points in a 10000-by-10000 grid\
+  * 500 random non-degenerate points in a 1000-by-1000 grid\
+  * 50 random non-degenerate points in a 100-by-100 grid\
+  * 5 random non-degenerate points in a 10-by-10 grid\
+==> passed\
+\
+Test 6b: Insert n distinct points and call nearest() with random query points\
+  * 50000 random distinct points in a 100000-by-100000 grid\
+  * 10000 random distinct points in a 10000-by-10000 grid\
+  * 10000 random distinct points in a 1000-by-1000 grid\
+  * 5000 random distinct points in a 100-by-100 grid\
+  * 50 random distinct points in a 10-by-10 grid\
+==> passed\
+\
+Test 6c: Insert n general points and call nearest() with random query points\
+  * 10000 random general points in a 1000-by-1000 grid\
+  * 10000 random general points in a 100-by-100 grid\
+  * 10000 random general points in a 10-by-10 grid\
+==> passed\
+\
+Test 7a: Intermixed sequence of calls to insert(), isEmpty(), size(),\
+         contains(), range(), and nearest() with probabilities\
+         (p1, p2, p3, p4, p5, p6), respectively\
+  * 20000 calls with non-degenerate points in a 100000-by-100000 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)\
+    - number of entries in student   solution: 2\
+    - number of entries in reference solution: 1\
+    - 1 extra entry in student solution: '(0.41719, 0.82971)'\
+\
+    - failed on trial 14 of 20000\
+    - rectangle = [0.17175, 0.33801] x [0.37229, 0.94248]\
+\
+  * 20000 calls with non-degenerate points in a 10000-by-10000 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)\
+    - number of entries in student   solution: 4\
+    - number of entries in reference solution: 2\
+    - 2 extra entries in student solution, including: '(0.2831, 0.2959)'\
+\
+    - failed on trial 33 of 20000\
+    - rectangle = [0.1524, 0.8356] x [0.4935, 0.9421]\
+\
+  * 20000 calls with non-degenerate points in a 1000-by-1000 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)\
+    - number of entries in student   solution: 1\
+    - number of entries in reference solution: 0\
+    - 1 extra entry in student solution: '(0.404, 0.51)'\
+\
+    - failed on trial 19 of 20000\
+    - rectangle = [0.443, 0.457] x [0.575, 0.723]\
+\
+  * 20000 calls with non-degenerate points in a 100-by-100 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)\
+    - number of entries in student   solution: 2\
+    - number of entries in reference solution: 0\
+    - 2 extra entries in student solution, including: '(0.58, 0.42)'\
+\
+    - failed on trial 20 of 20000\
+    - rectangle = [0.05, 0.69] x [0.76, 0.93]\
+\
+  * 20000 calls with non-degenerate points in a 10-by-10 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)\
+  * 20000 calls with non-degenerate points in a 1-by-1 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.1, 0.2, 0.2)\
+==> FAILED\
+\
+Test 7b: Intermixed sequence of calls to insert(), isEmpty(), size(),\
+         contains(), range(), and nearest() with probabilities\
+         (p1, p2, p3, p4, p5, p6), respectively\
+  * 20000 calls with distinct points in a 100000-by-100000 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 8\
+    - number of entries in reference solution: 0\
+    - 8 extra entries in student solution, including: '(0.72189, 0.82146)'\
+\
+    - failed on trial 24 of 20000\
+    - rectangle = [0.33823, 0.44935] x [0.21011, 0.60192]\
+\
+  * 20000 calls with distinct points in a 10000-by-10000 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 1\
+    - number of entries in reference solution: 0\
+    - 1 extra entry in student solution: '(0.5076, 0.5926)'\
+\
+    - failed on trial 13 of 20000\
+    - rectangle = [0.5766, 0.8101] x [0.2694, 0.6489]\
+\
+  * 20000 calls with distinct points in a 1000-by-1000 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 1\
+    - number of entries in reference solution: 0\
+    - 1 extra entry in student solution: '(0.425, 0.059)'\
+\
+    - failed on trial 10 of 20000\
+    - rectangle = [0.17, 0.252] x [0.162, 0.514]\
+    - sequence of dequeue operations was:\
+           set.insert((0.678, 0.086))\
+           set.nearest((0.995, 0.765))   ==>  (0.678, 0.086)\
+           set.insert((0.425, 0.059))\
+           set.range([0.34, 0.981] x [0.176, 0.511])\
+           set.nearest((0.07, 0.891))   ==>  (0.425, 0.059)\
+           set.contains((0.725, 0.662))  ==>  false\
+           set.nearest((0.582, 0.238))   ==>  (0.678, 0.086)\
+           set.range([0.335, 0.601] x [0.0, 0.502])\
+           set.insert((0.001, 0.553))\
+           set.range([0.17, 0.252] x [0.162, 0.514])\
+\
+  * 20000 calls with distinct points in a 100-by-100 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 1\
+    - number of entries in reference solution: 0\
+    - 1 extra entry in student solution: '(0.69, 0.5)'\
+\
+    - failed on trial 5 of 20000\
+    - rectangle = [0.33, 0.66] x [0.28, 0.81]\
+    - sequence of dequeue operations was:\
+           set.insert((0.69, 0.5))\
+           set.range([0.65, 0.87] x [0.45, 0.73])\
+           set.nearest((0.91, 0.89))   ==>  (0.69, 0.5)\
+           set.contains((0.24, 0.77))  ==>  false\
+           set.range([0.33, 0.66] x [0.28, 0.81])\
+\
+  * 20000 calls with distinct points in a 10-by-10 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 1\
+    - number of entries in reference solution: 0\
+    - 1 extra entry in student solution: '(1.0, 0.9)'\
+\
+    - failed on trial 22 of 20000\
+    - rectangle = [0.3, 0.4] x [0.8, 1.0]\
+\
+  * 20000 calls with distinct points in a 1-by-1 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+==> FAILED\
+\
+Test 7c: Intermixed sequence of calls to insert(), isEmpty(), size(),\
+         contains(), range(), and nearest() with probabilities\
+         (p1, p2, p3, p4, p5, p6), respectively\
+  * 20000 calls with general points in a 100000-by-100000 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 1\
+    - number of entries in reference solution: 0\
+    - 1 extra entry in student solution: '(0.31173, 0.2795)'\
+\
+    - failed on trial 21 of 20000\
+    - rectangle = [0.21181, 0.35695] x [0.45093, 0.4717]\
+\
+  * 20000 calls with general points in a 10000-by-10000 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 4\
+    - number of entries in reference solution: 1\
+    - 3 extra entries in student solution, including: '(0.5672, 0.2536)'\
+\
+    - failed on trial 27 of 20000\
+    - rectangle = [0.1091, 0.8177] x [0.2879, 0.8597]\
+\
+  * 20000 calls with general points in a 1000-by-1000 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 3\
+    - number of entries in reference solution: 1\
+    - 2 extra entries in student solution, including: '(0.463, 0.474)'\
+\
+    - failed on trial 27 of 20000\
+    - rectangle = [0.342, 0.465] x [0.843, 0.967]\
+\
+  * 20000 calls with general points in a 100-by-100 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 1\
+    - number of entries in reference solution: 0\
+    - 1 extra entry in student solution: '(0.34, 0.19)'\
+\
+    - failed on trial 13 of 20000\
+    - rectangle = [0.06, 0.67] x [0.34, 0.46]\
+\
+  * 20000 calls with general points in a 10-by-10 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 2\
+    - number of entries in reference solution: 0\
+    - 2 extra entries in student solution, including: '(0.8, 0.6)'\
+\
+    - failed on trial 20 of 20000\
+    - rectangle = [0.4, 0.7] x [0.7, 0.8]\
+\
+  * 20000 calls with general points in a 1-by-1 grid\
+     and probabilities (0.3, 0.05, 0.05, 0.2, 0.2, 0.2)\
+    - number of entries in student   solution: 2\
+    - number of entries in reference solution: 1\
+    - 1 extra entry in student solution: '(0.0, 0.0)'\
+\
+    - failed on trial 45 of 20000\
+    - rectangle = [1.0, 1.0] x [1.0, 1.0]\
+\
+==> FAILED\
+\
+Test 8: Intermixed sequence of calls to insert(), isEmpty(), size(),\
+        contains(), range(), and nearest() with probabilities\
+        (p1=0, p2, p3, p4, p5, p6), respectively\
+        (data structure with 0 points)\
+  * 1000 calls with no points in a 1000-by-1000 grid\
+     and probabilities (0.0, 0.5, 0.5, 0.0, 0.0, 0.0)\
+  * 1000 calls with no points in a 1000-by-1000 grid\
+     and probabilities (0.0, 0.2, 0.2, 0.6, 0.0, 0.0)\
+  * 1000 calls with no points in a 1000-by-1000 grid\
+     and probabilities (0.0, 0.2, 0.2, 0.0, 0.6, 0.0)\
+    java.lang.NullPointerException\
+\
+    KdTree$Node.access$000(KdTree.java:11)\
+    KdTree.range(KdTree.java:134)\
+    TestKdTree.testAll(TestKdTree.java:687)\
+    TestKdTree.test8(TestKdTree.java:819)\
+    TestKdTree.main(TestKdTree.java:905)\
+\
+    - sequence of dequeue operations was:\
+           set.range([0.179, 0.251] x [0.264, 0.564])\
+  * 1000 calls with no points in a 1000-by-1000 grid\
+     and probabilities (0.0, 0.2, 0.2, 0.0, 0.0, 0.6)\
+    - failed on trial 2 of 1000\
+    - student   nearest()  = (0.724, 0.946)\
+    - reference nearest()  = null\
+    - (0.724, 0.946) was not inserted into data structure\
+    - student   distanceTo() = 0.0\
+    - sequence of dequeue operations was:\
+           set.size()  ==>  0\
+           set.nearest((0.724, 0.946))   ==>  (0.724, 0.946)\
+\
+  * 1000 calls with no points in a 1000-by-1000 grid\
+     and probabilities (0.0, 0.2, 0.2, 0.2, 0.2, 0.2)\
+    - failed on trial 3 of 1000\
+    - student   nearest()  = (0.878, 0.532)\
+    - reference nearest()  = null\
+    - (0.878, 0.532) was not inserted into data structure\
+    - student   distanceTo() = 0.0\
+    - sequence of deq\
+\
+...\
+\
+WARNING: the grading output was truncated due to excessive length.\
+Typically, this is because you have a method that has an unanticipated side effect\
+(such as printing to standard output or throwing an exception). A large amount of output\
+can also arise from failing many tests.}
